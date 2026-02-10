@@ -14,6 +14,8 @@ import dudu_cry from "../../public/dudu_cry.gif";
 import cute_cat from "../../public/cute-cat.gif";
 import dudu_love from "../../public/dudu_love.gif";
 
+import gift from "../../public/gift.svg";
+
 type Step = {
   image: StaticImageData;
   title: string;
@@ -63,7 +65,7 @@ const yesSteps: Step[] = [
     title: "Happy Valentine Day Baby!💍",
     text: "Every second with you is a celebration. You are the spark that makes my world so much brighter!",
     button: {
-      label: "Fine...",
+      label: "SEE MY GIFTS",
       href: "/surprise",
     },
   },
@@ -112,12 +114,13 @@ const Page = () => {
   );
 
   return (
-    <section className="bg-[#d983b7] h-screen flex flex-col items-center space-y-5 pt-32 text-center">
+    <section className="h-screen flex flex-col items-center space-y-5 pt-32 text-center">
       <Image
         src={currentStep.image}
         alt="cute"
         width={150}
         priority={yesClicked}
+        unoptimized
       />
 
       <h1 className="text-4xl font-bold px-3">{currentStep.title}</h1>
@@ -149,9 +152,10 @@ const Page = () => {
       {yesClicked && currentStep.button && (
         <button
           onClick={() => router.push(currentStep.button!.href)}
-          className="bg-green-600 rounded-3xl px-12 py-4 text-2xl text-white mt-4"
+          className="bg-[#F72585] rounded-3xl px-12 py-4 text-2xl text-white mt-4 flex gap-3"
         >
           {currentStep.button.label}
+          <Image src={gift} alt={gift} />
         </button>
       )}
     </section>

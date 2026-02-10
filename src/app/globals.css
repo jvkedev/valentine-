@@ -4,5 +4,8 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-  font-family: cursive;
+}
+
+body {
+  background-color: #d983b7;
 }
