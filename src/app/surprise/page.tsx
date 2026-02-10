@@ -1,15 +1,10 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
-
-import dudu_dare from "../../../public/dudu_dare.gif";
-import dudu_showing from "../../../public/dudu_showing.gif";
-import dudu_made from "../../../public/dudu_made.gif";
 
 type Card = {
   id: number;
-  image: StaticImageData;
+  video: string;
   title: string;
   result: string;
 };
@@ -17,19 +12,19 @@ type Card = {
 const cards: Card[] = [
   {
     id: 1,
-    image: dudu_dare,
+    video: "/videos/dudu_dare.mp4",
     title: "Tap me. I dare you",
     result: "result_1",
   },
   {
     id: 2,
-    image: dudu_showing,
+    video: "/videos/dudu_showing.mp4",
     title: "I have something for you…",
     result: "result_2",
   },
   {
     id: 3,
-    image: dudu_made,
+    video: "/videos/dudu_made.mp4",
     title: "Um… I made this for you",
     result: "result_3",
   },
@@ -53,7 +48,15 @@ const Page = () => {
             className="bg-[#f09bcec2] my-3 flex flex-col items-center space-y-3 p-5 rounded-2xl backdrop-blur-3xl"
             onClick={() => handleCardClick(card)}
           >
-            <Image src={card.image} alt={card.title} width={120} />
+            <video
+              src={card.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-30"
+              preload="auto"
+            />
             <h3 className="text-xl">{card.title}</h3>
           </div>
         ))}

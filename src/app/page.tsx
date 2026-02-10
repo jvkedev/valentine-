@@ -1,23 +1,15 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import dudu from "../../public/dudu.gif";
-import dudu_walk from "../../public/dudu_walk.gif";
-import dudu_sad from "../../public/dudu_sad.gif";
-import dudu_weeping from "../../public/dudu_weeping.gif";
-import dudu_cry from "../../public/dudu_cry.gif";
-import cute_cat from "../../public/cute-cat.gif";
-import dudu_love from "../../public/dudu_love.gif";
-
 import gift from "../../public/gift.svg";
 
 type Step = {
-  image: StaticImageData;
+  video: string;
   title: string;
   text: string;
   button?: {
@@ -28,32 +20,32 @@ type Step = {
 
 const noSteps: Step[] = [
   {
-    image: dudu,
+    video: "/videos/dudu.mp4",
     title: "Will you be mine🥹?",
     text: "Life is an incredible journey, and I want to spend every single second of it with you.",
   },
   {
-    image: dudu_walk,
+    video: "/videos/dudu_walk.mp4",
     title: "Think again😭",
     text: "Are you really sure? Because my heart is already choosing you 💔",
   },
   {
-    image: dudu_sad,
+    video: "/videos/dudu_sad.mp4",
     title: "Are you sure😡?",
     text: "This decision is serious… someone here is getting emotionally attached 🥺",
   },
   {
-    image: dudu_weeping,
+    video: "/videos/dudu_weeping.mp4",
     title: "Please wait😢🙏",
     text: "I promise endless laughs, care, and a whole lot of love 💕",
   },
   {
-    image: dudu_cry,
+    video: "/videos/dudu_cry.mp4",
     title: "Last Chance😭❤️",
     text: "Say yes, and I’ll make sure you never regret it 🌈",
   },
   {
-    image: cute_cat,
+    video: "/videos/cute_cat.mp4",
     title: "See This🥱",
     text: "There's no other option",
   },
@@ -61,7 +53,7 @@ const noSteps: Step[] = [
 
 const yesSteps: Step[] = [
   {
-    image: dudu_love,
+    video: "/videos/dudu_love.mp4",
     title: "Happy Valentine Day Baby!💍",
     text: "Every second with you is a celebration. You are the spark that makes my world so much brighter!",
     button: {
@@ -115,12 +107,14 @@ const Page = () => {
 
   return (
     <section className="h-screen flex flex-col items-center space-y-5 pt-32 text-center">
-      <Image
-        src={currentStep.image}
-        alt="cute"
-        width={150}
-        priority={yesClicked}
-        unoptimized
+      <video
+        src={currentStep.video}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-37.5 h-auto"
+        preload="auto"
       />
 
       <h1 className="text-4xl font-bold px-3">{currentStep.title}</h1>
