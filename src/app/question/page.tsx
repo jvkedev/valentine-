@@ -1,6 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 const Page = () => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const handleOptionClick = (option: string) => {
+    setSelectedOption(option);
+    localStorage.setItem("quizResult", option);
+  };
+
+  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+
   return (
     <section className="px-5">
       <h1 className="text-4xl font-bold px-3 mt-4 mb-8">Quiz for you...</h1>
@@ -9,12 +20,19 @@ const Page = () => {
           Lorem ipsum dolor sit amet consecetur adipisicing elit
         </h3>
         <ul className="text-lg mt-5 w-full">
-          <li className="bg-pink-600 mt-5 px-8 py-4 rounded-2xl text-white">Option 1</li>
-          <li className="bg-pink-600 mt-5 px-8 py-4 rounded-2xl text-white">Option 2</li>
-          <li className="bg-pink-600 mt-5 px-8 py-4 rounded-2xl text-white">Option 3</li>
-          <li className="bg-pink-600 mt-5 px-8 py-4 rounded-2xl text-white">Option 4</li>
+          {options.map((option) => (
+            <li
+              key={option}
+              className={`mt-5 px-8 py-4 rounded-2xl text-white ${
+                selectedOption === option ? "bg-pink-800" : "bg-pink-600"
+              }`}
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </li>
+          ))}
         </ul>
-       </div>
+      </div>
     </section>
   );
 };
