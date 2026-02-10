@@ -1,65 +1,161 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+import { useState, useRef } from "react";
+import Image, { StaticImageData } from "next/image";
+import { useRouter } from "next/navigation";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+import dudu from "../../public/dudu.gif";
+import dudu_walk from "../../public/dudu_walk.gif";
+import dudu_sad from "../../public/dudu_sad.gif";
+import dudu_weeping from "../../public/dudu_weeping.gif";
+import dudu_cry from "../../public/dudu_cry.gif";
+import cute_cat from "../../public/cute-cat.gif";
+import dudu_love from "../../public/dudu_love.gif";
+
+type Step = {
+  image: StaticImageData;
+  title: string;
+  text: string;
+  button?: {
+    label: string;
+    href: string;
+  };
+};
+
+const noSteps: Step[] = [
+  {
+    image: dudu,
+    title: "Will you be mine🥹?",
+    text: "Life is an incredible journey, and I want to spend every single second of it with you.",
+  },
+  {
+    image: dudu_walk,
+    title: "Think again😭",
+    text: "Are you really sure? Because my heart is already choosing you 💔",
+  },
+  {
+    image: dudu_sad,
+    title: "Are you sure😡?",
+    text: "This decision is serious… someone here is getting emotionally attached 🥺",
+  },
+  {
+    image: dudu_weeping,
+    title: "Please wait😢🙏",
+    text: "I promise endless laughs, care, and a whole lot of love 💕",
+  },
+  {
+    image: dudu_cry,
+    title: "Last Chance😭❤️",
+    text: "Say yes, and I’ll make sure you never regret it 🌈",
+  },
+  {
+    image: cute_cat,
+    title: "See This🥱",
+    text: "There's no other option",
+  },
+];
+
+const yesSteps: Step[] = [
+  {
+    image: dudu_love,
+    title: "Happy Valentine Day Baby!💍",
+    text: "Every second with you is a celebration. You are the spark that makes my world so much brighter!",
+    button: {
+      label: "Fine...",
+      href: "/surprise",
+    },
+  },
+];
+
+const Page = () => {
+  const router = useRouter();
+  const btnRef = useRef<HTMLButtonElement | null>(null);
+
+  const [step, setStep] = useState(0);
+  const [yesClicked, setYesClicked] = useState(false);
+
+  const [xValue, setXValue] = useState(0);
+  const [yValue, setYValue] = useState(0);
+
+  const xRandom = gsap.utils.random(-200, 100, 10, true);
+  const yRandom = gsap.utils.random(-300, 200, 10, true);
+
+  const currentSteps = yesClicked ? yesSteps : noSteps;
+  const currentStep = currentSteps[step];
+
+  const handleNoClick = () => {
+    if (step < noSteps.length - 1) {
+      setStep((prev) => prev + 1);
+    }
+    setXValue(xRandom());
+    setYValue(yRandom());
+  };
+
+  const handleYesClick = () => {
+    setYesClicked(true);
+    setStep(0);
+  };
+
+  useGSAP(
+    () => {
+      if (!btnRef.current) return;
+      gsap.to(btnRef.current, {
+        x: xValue,
+        y: yValue,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+    },
+    { dependencies: [xValue, yValue] },
   );
-}
+
+  return (
+    <section className="bg-[#d983b7] h-screen flex flex-col items-center space-y-5 pt-32 text-center">
+      <Image
+        src={currentStep.image}
+        alt="cute"
+        width={150}
+        priority={yesClicked}
+      />
+
+      <h1 className="text-4xl font-bold px-3">{currentStep.title}</h1>
+
+      <p className="px-5 text-xl font-sans">{currentStep.text}</p>
+
+      {!yesClicked && (
+        <div className="flex space-x-5 text-2xl text-white">
+          <button
+            onClick={handleYesClick}
+            className="bg-red-600 rounded-3xl px-10 py-3"
+          >
+            YES
+          </button>
+
+          {step < noSteps.length - 1 && (
+            <button
+              ref={btnRef}
+              className="bg-blue-600 rounded-3xl px-10 py-3"
+              onClick={handleNoClick}
+            >
+              NO
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Custom button for YES step */}
+      {yesClicked && currentStep.button && (
+        <button
+          onClick={() => router.push(currentStep.button!.href)}
+          className="bg-green-600 rounded-3xl px-12 py-4 text-2xl text-white mt-4"
+        >
+          {currentStep.button.label}
+        </button>
+      )}
+    </section>
+  );
+};
+
+export default Page;
