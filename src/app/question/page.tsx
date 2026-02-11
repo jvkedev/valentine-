@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 const Page = () => {
+  const router = useRouter();
+
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     localStorage.setItem("quizResult", option);
+    router.push("/love")
   };
 
   const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
