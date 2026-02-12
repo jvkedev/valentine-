@@ -58,7 +58,7 @@ const yesSteps: Step[] = [
     text: "Every second with you is a celebration. You are the spark that makes my world so much brighter!",
     button: {
       label: "SEE MY GIFTS",
-      href: "/surprise",
+      href: "/card",
     },
   },
 ];
