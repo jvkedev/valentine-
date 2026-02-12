@@ -24,9 +24,7 @@ export default function LoveBar() {
     const result = isInfinite
       ? "infinite"
       : Math.floor(Math.random() * 31) + 70;
-
     setLoveScore(result);
-    localStorage.setItem("loveScore", result.toString());
   };
 
   const getMessage = (score: number | "infinite") => {
@@ -67,7 +65,7 @@ export default function LoveBar() {
             onClick={generateLove}
             className="bg-pink-600 text-white px-6 py-3 rounded-xl"
           >
-            Check Love %
+            Test Our Love %
           </button>
         </>
       )}

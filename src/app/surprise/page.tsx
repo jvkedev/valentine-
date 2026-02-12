@@ -33,8 +33,7 @@ const cards: Card[] = [
 const Page = () => {
   const router = useRouter();
 
-  const handleCardClick = (card: Card) => {
-    localStorage.setItem("SelectedCard", JSON.stringify(card));
+  const handleCardClick = () => {
     router.push("/question");
   };
 
@@ -45,8 +44,8 @@ const Page = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className="bg-[#f09bcec2] my-3 flex flex-col items-center space-y-3 p-5 rounded-2xl backdrop-blur-3xl"
-            onClick={() => handleCardClick(card)}
+            className="bg-[#ffd6e0] my-3 flex flex-col items-center space-y-3 p-5 rounded-2xl backdrop-blur-3xl"
+            onClick={handleCardClick}
           >
             <video
               src={card.video}
