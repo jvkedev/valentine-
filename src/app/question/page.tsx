@@ -21,7 +21,7 @@ const Page = () => {
   ];
 
   return (
-    <section className="px-5">
+    <section className="px-5-">
       <h1 className="text-4xl font-bold px-3 mt-4 mb-8">Quiz for you...</h1>
       <div className="bg-[#f1eeee50] my-3 flex flex-col items-center space-y-3 p-5 rounded-2xl backdrop-blur-3xl">
         <h3 className="text-xl font-semibold mt-5">
