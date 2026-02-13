@@ -15,8 +15,21 @@ const text = [
   {
     text: "There’s nothing left without my baby. I’ll love you till the light leaves my eyes. So don’t say you wanna quit.",
   },
-  { text: "" },
-  // { text: "test_3" },
+  {
+    text: "Take my hand, Put it in yours, Can i have this dance? I've been struck by your love, Won't you dance in slow motion?",
+  },
+  {
+    text: "I hate your voice it's makes me mess. Oh please you looks like shit, I've been turning up the love",
+  },
+  {
+    text: "When you close your eyes, Tell me what are you dreaming? I'd spend 10,000 hours and 10,000 more, with you",
+  },
+  {
+    text: "Love is painful, love is hard, Love can see beauty through the scars",
+  },
+  {
+    text: "Won't you give me tonight and the rest of your life and when you open your eyes i'll be there by your side",
+  },
 ];
 
 const Page = () => {

@@ -49,9 +49,9 @@ export default function LoveBar() {
 
   return (
     <section className="flex flex-col items-center gap-6 p-6">
-      <h1 className="text-4xl font-bold text-center">How much you love me?</h1>
+      <h1 className="text-4xl font-bold text-center">Love Meter</h1>
       {!checked && (
-        <>
+        <div className="p-10 bg-[#EFB6BE] rounded-2xl shadow-2xl space-y-5 flex flex-col items-center">
           <video
             src="/videos/dudu_test.mp4"
             autoPlay
@@ -59,15 +59,15 @@ export default function LoveBar() {
             muted
             playsInline
             preload="auto"
-            width={180}
+            width={250}
           />
           <button
             onClick={generateLove}
-            className="bg-pink-600 text-white px-6 py-3 rounded-xl"
+            className="bg-pink-600 text-white px-6 py-3 rounded-xl text-xl"
           >
             Test Our Love %
           </button>
-        </>
+        </div>
       )}
 
       {loveScore !== null &&
@@ -87,10 +87,10 @@ export default function LoveBar() {
               <p className="text-2xl font-semibold text-center">
                 {result.message}
               </p>
-              <div className="w-72 bg-gray-300 rounded-full h-10 overflow-hidden">
+              <div className="w-72 bg-gray-300 rounded-full h-13 overflow-hidden text-2xl">
                 {loveScore === "infinite" ? (
                   <div className="h-full bg-red-600 flex items-center justify-center text-white font-bold">
-                    ∞ Love
+                    Infinite
                   </div>
                 ) : (
                   <div
@@ -111,7 +111,7 @@ export default function LoveBar() {
             onClick={() => router.push("/result")}
             className="text-xl bg-[#D81B60] text-white px-18 py-3 rounded-2xl"
           >
-            Ti amo
+            Surprise For You
           </button>
           <p className="text-[20px] text-center font-mono font-bold">
             <i>See what you wanna see, but all i see is you right now</i>

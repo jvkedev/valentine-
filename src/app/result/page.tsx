@@ -1,6 +1,4 @@
 "use client";
-
-import { useRouter } from "next/navigation";
 import { Love_Light } from "next/font/google";
 
 const loveLight = Love_Light({
@@ -9,8 +7,6 @@ const loveLight = Love_Light({
 });
 
 const Page = () => {
-  const router = useRouter();
-
   return (
     <section className="flex flex-col space-y-7 px-5">
       <h1 className="text-4xl font-bold text-center mt-8">A letter for you!</h1>
@@ -32,18 +28,6 @@ const Page = () => {
           Forever yours.💝
         </p>
       </div>
-      {/* <button
-        className="
-px-6 py-3 text-xl rounded-2xl bg-pink-500 text-white
-shadow-[0_8px_20px_rgba(236,72,153,0.45)]
-active:scale-95
-active:shadow-[0_4px_12px_rgba(236,72,153,0.35)]
-transition-all duration-150
-"
-        onClick={() => router.push("/score")}
-      >
-        See Your Love Score
-      </button> */}
     </section>
   );
 };

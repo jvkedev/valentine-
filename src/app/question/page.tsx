@@ -14,10 +14,10 @@ const Page = () => {
   };
 
   const options = [
-    "Your smile that ruined my peace forever",
-    "Option 2",
-    "Option 3",
-    "Option 4",
+    "On Mars",
+    "In your heart",
+    "In our memories",
+    "Both B and C",
   ];
 
   return (
@@ -25,7 +25,7 @@ const Page = () => {
       <h1 className="text-4xl font-bold px-3 mt-4 mb-8">Quiz for you...</h1>
       <div className="bg-[#f1eeee50] my-3 flex flex-col items-center space-y-3 p-5 rounded-2xl backdrop-blur-3xl">
         <h3 className="text-xl font-semibold mt-5">
-          Why did I fall in love with you?
+          {`Where do i plan to spend the rest of my life?`}
         </h3>
         <ul className="text-lg mt-5 w-full">
           {options.map((option) => (
